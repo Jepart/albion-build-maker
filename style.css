@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  font-family: "Roboto", sans-serif;
+}
+body {
+  --zoom: 1;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+div#boss {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+main > picture {
+  width: calc(120px * var(--zoom));
+  height: calc(120px * var(--zoom));
+}
+main > picture > img {
+  width: 100%;
+  height: 100%;
+}
+section#set {
+  width: calc(408px * var(--zoom));
+  height: calc(442px * var(--zoom));
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-image: url("/assets/gear.png");
+}
+aside {
+  background-color: rebeccapurple;
+  width: 600px;
+  height: 500px;
+}
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.item {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: none;
+  background-color: transparent;
+  background-size: 100%;
+  cursor: pointer;
+}
+.item[name="head"] {
+  top: 219px;
+  left: 152px;
+}
+.item[name="bag"] {
+  top: 219px;
+  left: 25px;
+}
+.item[name="cape"] {
+  top: 219px;
+  left: 282px;
+}
+.item[name="armor"] {
+  top: 330px;
+  left: 153px;
+}
+.item[name="mainhand"] {
+  top: 330px;
+  left: 25px;
+}
+.item[name="offhand"] {
+  top: 330px;
+  left: 282px;
+}
+.item[name="food"] {
+  top: 441px;
+  left: 25px;
+}
+.item[name="shoes"] {
+  top: 441px;
+  left: 152px;
+}
+.item[name="potion"] {
+  top: 441px;
+  left: 282px;
+}
+.shadow {
+  -webkit-box-shadow: 6px 10px 5px -8px rgba(0, 0, 0, 0.46);
+  -moz-box-shadow: 6px 10px 5px -8px rgba(0, 0, 0, 0.46);
+  box-shadow: 6px 10px 5px -8px rgba(0, 0, 0, 0.46);
+}
+.darkScreen {
+  background-color: black;
+  opacity: 0.5;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+#selectItem {
+  z-index: 9000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: auto;
+  background-color: #dfe3e6;
+  padding: 3px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  border: 5px solid #afafaf8c;
+}
+
+#selectItem h3 {
+  color: rgb(82, 82, 82);
+  float: left;
+  margin-left: 10px;
+}
+#selectItem .close {
+  float: right;
+  margin: 5px 5px 0 0;
+  border-radius: 5;
+}
+
+#selectItem [name="option"] {
+  float: left;
+  margin-bottom: 5px;
+}
+#itemSelect {
+  width: 222px;
+  margin-right: 17px;
+}
+#selectItem .itemSelect {
+  float: left;
+}
+#selectItem main {
+  width: 100%;
+}
+#selectItem article {
+  width: 100%;
+  max-height: 400px;
+  height: 400px;
+  overflow: hidden auto;
+}
+#selectItem article picture{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+#selectItem article picture img {
+  width: 90px;
+  height: 90px;
+  position: relative;
+  
+}
+
+#selectItem article picture img.check{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url('/assets/check.svg');
+    background-size: 100%;
+    bottom: 18px;
+    right: 15px;
+    z-index: 1;
+}
+
+#selectItem button.save{
+    width: 150px ;
+    background-color: rgb(80, 165, 80);
+    border-radius: 20px;
+    border:none;
+    color: #fff;
+    padding: 5px;
+}

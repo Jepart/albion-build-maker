@@ -169,7 +169,7 @@ aside {
     position: absolute;
     width: 20px;
     height: 20px;
-    background-image: url('/assets/check.svg');
+    background-image: url('https://www.svgrepo.com/show/404946/check-mark-button.svg');
     background-size: 100%;
     bottom: 18px;
     right: 15px;

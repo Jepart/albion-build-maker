@@ -7,7 +7,15 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-image: url('https://assets.albiononline.com/uploads/media/default/media/a4ce860061a2e35622b3cade9550ebe9e10e0cd8.jpeg');
+  background-size: 120%;
+  background-repeat: no-repeat;
+  backdrop-filter: brightness(20%);
+  width: 100vw;
+  height: 100vh;
 }
+
+
 div#boss {
   display: flex;
   flex-direction: row;
@@ -20,6 +28,11 @@ main {
   align-items: center;
   justify-content: center;
   position: relative;
+}
+main span{
+  font-size: 30px;
+  color: #fff;
+  font-weight: 800;
 }
 main > picture {
   width: calc(120px * var(--zoom));
@@ -34,12 +47,109 @@ section#set {
   height: calc(442px * var(--zoom));
   background-repeat: no-repeat;
   background-size: 100%;
-  background-image: url("/assets/gear.png");
 }
 aside {
-  background-color: rebeccapurple;
   width: 600px;
   height: 500px;
+  color: #fff;
+}
+aside textarea{
+  width: 98%;
+  height: 110px;
+  background-color: transparent;
+  border: none;
+  resize: none;
+  outline: none;
+  color: #fff;
+  font-size: 18px;
+}
+aside article{
+  width: 100%;
+  height: 75px;
+  margin: 5px 0;
+  background-color: rgba(0, 0, 0, 0.226);
+  border-radius: 5px;
+   display: flex;
+   justify-content: left;
+   align-items: center;
+}
+aside article button.itemSelected{
+  width: 65px;
+  height: 65px;
+  background-color: #ffffff1a;
+  margin-left: 5px;
+  border-radius: 5px;
+  border: none;
+  background-size: 120%;
+  background-position: center;
+}
+aside article button.spell_1{
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff1a;
+  margin-left: 10px;
+  border-radius: 20px;
+  border: none;
+  background-size: 120%;
+  background-position: center;
+  cursor: pointer;
+}
+aside article .spells{
+  position: relative;
+  background-color: #dfe3e6;
+  display: none;
+}
+div.list_spells{
+  width: auto;
+  height: auto;
+  background-color: rgba(253, 253, 253, 0.678);
+  position: absolute;
+  margin-top: -60px;
+  padding: 5px;
+  transform: translateX(-40%);
+  border-radius: 20px;
+  display: none;
+}
+div.list_spells img{
+  width: 30px;
+  height: 30px;
+  
+}
+aside article button:hover div.list_spells{
+  display:block;
+}
+aside article button.spell_2{
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff1a;
+  margin-left: 15px;
+  border-radius: 20px;
+  border: none;
+  background-size: 120%;
+  background-position: center;
+  cursor: pointer;
+}
+aside article button.spell_3{
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff1a;
+  margin-left: 15px;
+  border-radius: 20px;
+  border: none;
+  background-size: 120%;
+  background-position: center;
+  cursor: pointer;
+}
+aside article button.spell_4{
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff1a;
+  margin-left: 15px;
+  border-radius: 20px;
+  border: none;
+  background-size: 120%;
+  background-position: center;
+  cursor: pointer;
 }
 .info {
   display: flex;
@@ -52,8 +162,9 @@ aside {
   width: 100px;
   height: 100px;
   border: none;
-  background-color: transparent;
-  background-size: 100%;
+  background-color: rgba(44, 44, 44, 0.432);
+  background-size: 120%;
+  background-position: center;
   cursor: pointer;
 }
 .item[name="head"] {
@@ -62,11 +173,11 @@ aside {
 }
 .item[name="bag"] {
   top: 219px;
-  left: 25px;
+  left: 40px;
 }
 .item[name="cape"] {
   top: 219px;
-  left: 282px;
+  left: 265px;
 }
 .item[name="armor"] {
   top: 330px;
@@ -74,15 +185,15 @@ aside {
 }
 .item[name="mainhand"] {
   top: 330px;
-  left: 25px;
+  left: 40px;
 }
 .item[name="offhand"] {
   top: 330px;
-  left: 282px;
+  left: 265px;
 }
 .item[name="food"] {
   top: 441px;
-  left: 25px;
+  left: 40px;
 }
 .item[name="shoes"] {
   top: 441px;
@@ -90,7 +201,7 @@ aside {
 }
 .item[name="potion"] {
   top: 441px;
-  left: 282px;
+  left: 265px;
 }
 .shadow {
   -webkit-box-shadow: 6px 10px 5px -8px rgba(0, 0, 0, 0.46);

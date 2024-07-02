@@ -26,6 +26,36 @@ defineItem = (slot, tag, twohand = 'false') => {
     let findSlot = item.find(item => item._id === slot)
     let findItem = findSlot['items'].find(item => item._id === tag)
     
+    var selectSpells = $('article[name=mainhand] > span')
+
+    selectSpells.attr("style","display:block;")
+    findItem['craftingspelllist']['craftspell'].forEach(e => {
+      console.log(e);
+      if (e['slots'] == '1'){
+        var string = `<img src="https://render.albiononline.com/v1/spell/${e['uniquename']}" spells="spell_1">`
+        selectSpells.parent().find('span[name=spell_1] > div.list_spells').append(string)
+      }
+      else if (e['slots'] == '2'){
+        var string = `<img src="https://render.albiononline.com/v1/spell/${e['uniquename']}" spells="spell_2">`
+        selectSpells.parent().find('span[name=spell_2] > div.list_spells').append(string)
+      }
+      else if (e['slots'] == '3'){
+        var string = `<img src="https://render.albiononline.com/v1/spell/${e['uniquename']}" spells="spell_3">`
+        selectSpells.parent().find('span[name=spell_3] > div.list_spells').append(string)
+      }
+      else{
+        var string = `<img src="https://render.albiononline.com/v1/spell/${e['uniquename']}" spells="spell_4">`
+        selectSpells.parent().find('span[name=spell_4] > div.list_spells').append(string)
+      }
+    });
+    $('article[name=mainhand] > span > .list_spells > img').click(function (e) {
+      var button = $(`article[name=mainhand] > span > button.${ $(this).attr('spells')}`)
+      console.log(button); 
+      var img = $(this).attr('src')
+      button.attr('style',
+        `background-image: url("${img}");`
+      )
+    });
   }
   if (slot == "offhand") {
     if (select.attr('twohand') == 'true'){

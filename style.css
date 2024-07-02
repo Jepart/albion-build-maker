@@ -93,30 +93,40 @@ aside article button.spell_1{
   background-size: 120%;
   background-position: center;
   cursor: pointer;
+
 }
-aside article .spells{
+aside article span.spells {
   position: relative;
-  background-color: #dfe3e6;
   display: none;
 }
 div.list_spells{
   width: auto;
-  height: auto;
+  height: 30px;
   background-color: rgba(253, 253, 253, 0.678);
   position: absolute;
-  margin-top: -60px;
+  margin-top: -75px;
+  margin-left: 30%;
   padding: 5px;
-  transform: translateX(-40%);
   border-radius: 20px;
+  justify-content: center;
+  justify-content: center;
+  align-items: center;
   display: none;
 }
+
 div.list_spells img{
-  width: 30px;
-  height: 30px;
-  
+  width: 40px;
+  height: 40px;
+  background-size: 120%;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
-aside article button:hover div.list_spells{
-  display:block;
+aside article .spells button:hover + div.list_spells{
+  display: flex;
+}
+aside article .spells div.list_spells:hover{
+  display: flex;
 }
 aside article button.spell_2{
   width: 40px;
@@ -139,6 +149,7 @@ aside article button.spell_3{
   background-size: 120%;
   background-position: center;
   cursor: pointer;
+
 }
 aside article button.spell_4{
   width: 40px;

@@ -8,8 +8,16 @@ $(".item").click(function (e) {
 //     select.attr('style', `background-image: url("https://render.albiononline.com/v1/item/${tag}@${ench}");`);
 
 // };
-createItens = (slot = "head") => {
-  $('datalist#suggestions > option').remove()
+$('button.close,.darkScreen').click(function (e) { 
+  $('#selectItem,.darkScreen').fadeOut()
+});
+$('button.save').click(function (e) { 
+  console.log($('#selectItem').attr('slot'));
+});
+createItens = (slot = "mainhand") => {
+
+  $('datalist#suggestions > option,#selectItem > main > article>picture').remove()
+  $('#selectItem').attr('slot',slot)
   item.forEach((e) => {
     if (e["_id"] == slot) {
       e["items"].forEach((item) => {
@@ -25,7 +33,7 @@ createItens = (slot = "head") => {
     $("img.check").remove();
     $("picture[select=true]").attr("select", "false");
     $(this).attr("select", "true");
-    $(this).append('<img src="/assets/check.svg" class="check">');
+    $(this).append('<img src="https://www.svgrepo.com/show/404946/check-mark-button.svg" class="check">');
   });
 
   $("#itemSelect").on("input", function() {
@@ -34,7 +42,8 @@ createItens = (slot = "head") => {
       var languageTag = $(this).attr("language").toLowerCase();
       $(this).toggle(languageTag.includes(searchText));
     });
-});
+  });
+  $('#selectItem,.darkScreen').fadeIn()
 
 };
 

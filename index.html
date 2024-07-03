@@ -7,12 +7,12 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <link rel="stylesheet" href="style.css?v=2" />
     <script>
-      var item
+      var item;
 
-      $.get("assets/item.json", function(data) {
-          item = data;
-      }).fail(function(error) {
-          console.error("Erro na solicitação AJAX:", error);
+      $.get("assets/item.json", function (data) {
+        item = data;
+      }).fail(function (error) {
+        console.error("Erro na solicitação AJAX:", error);
       });
     </script>
     <script src="script.js?v=2" defer></script>
@@ -23,7 +23,6 @@
         <picture
           ><img
             src="https://cdn.discordapp.com/icons/1178047720221581322/cc11d07041cf5ee8ae8b226dbae32bc0.webp"
-            alt=""
         /></picture>
         <textarea class="title" rows="1">Build</textarea>
         <div class="info">
@@ -38,71 +37,98 @@
             <button class="item" name="shoes"></button>
             <button class="item" name="potion"></button>
           </section>
-          <aside>
+          <aside name="skill">
             <article name="mainhand">
               <button class="itemSelected"></button>
-              <span class="spells" name="spell_1">
-                <button class="spell_1"></button>
-                <div class="list_spells">
-                </div>
-              </span>
-              <span class="spells"  name="spell_2">
-                <button class="spell_2"></button>
-                  <div class="list_spells">
-                  </div>
-              </span>
-              <span class="spells" name="spell_3">
-                <button class="spell_3"></button>
-              </span>
-              <span class="spells" name="spell_4">
-                <button class="spell_4"></button>
-                  <div class="list_spells">
-                  </div>
-              </span>
-            </article>
-            <article name="head">
-              <button class="itemSelected"></button>
-              <span class="spells" name="spell_1">
-                <button class="spell_1"></button>
-                <div class="list_spells">
-                </div>
-              </span>
-              <span class="spells"  name="spell_2">
-                <button class="spell_2"></button>
-                  <div class="list_spells">
-                  </div>
-              </span>
-            </article>
-            <article name="armor">
-              <button class="itemSelected"></button>
+              <div class="spellList">
+                <h5></h5>
                 <span class="spells" name="spell_1">
                   <button class="spell_1"></button>
-                    <div class="list_spells"></div>
+                  <div class="list_spells"></div>
                 </span>
                 <span class="spells" name="spell_2">
                   <button class="spell_2"></button>
-                    <div class="list_spells"></div>
+                  <div class="list_spells"></div>
                 </span>
                 <span class="spells" name="spell_3">
                   <button class="spell_3"></button>
-                    <div class="list_spells"></div>
                 </span>
+                <span class="spells" name="spell_4">
+                  <button class="spell_4"></button>
+                  <div class="list_spells"></div>
+                </span>
+              </div>
             </article>
-            <article name="shoes">
+            <article name="head">
               <button class="itemSelected"></button>
+              <div class="spellList">
+                <h5></h5>
                 <span class="spells" name="spell_1">
                   <button class="spell_1"></button>
-                    <div class="list_spells"></div>
+                  <div class="list_spells"></div>
                 </span>
                 <span class="spells" name="spell_2">
                   <button class="spell_2"></button>
-                    <div class="list_spells"></div>
+                  <div class="list_spells"></div>
                 </span>
+              </div>
             </article>
-            <h3>Objetivos:</h3>
-            <textarea rows="4"></textarea>
+            <article name="armor">
+              <button class="itemSelected"></button>
+              <div class="spellList">
+                <h5></h5>
+                <span class="spells" name="spell_1">
+                  <button class="spell_1"></button>
+                  <div class="list_spells"></div>
+                </span>
+                <span class="spells" name="spell_2">
+                  <button class="spell_2"></button>
+                  <div class="list_spells"></div>
+                </span>
+                <span class="spells" name="spell_3">
+                  <button class="spell_3"></button>
+                  <div class="list_spells"></div>
+                </span>
+              </div>
+            </article>
+            <article name="shoes">
+              <button class="itemSelected"></button>
+              <div class="spellList">
+                <h5></h5>
+                <span class="spells" name="spell_1">
+                  <button class="spell_1"></button>
+                  <div class="list_spells"></div>
+                </span>
+                <span class="spells" name="spell_2">
+                  <button class="spell_2"></button>
+                  <div class="list_spells"></div>
+                </span>
+              </div>
+            </article>
+          </aside>
+          <aside name="other">
+            <article name="cape">
+              <button class="itemSelected"></button>
+              <h5></h5>
+            </article>
+            <article name="potion">
+              <button class="itemSelected"></button>
+              <h5></h5>
+            </article>
+            <article name="food">
+              <button class="itemSelected"></button>
+              <h5></h5>
+            </article>
+            <article name="offhand">
+              <button class="itemSelected"></button>
+              <h5></h5>
+            </article>
           </aside>
         </div>
+        <section id="swap">
+          <span name="swap">Swaps</span>
+          <div class="itemSelectSwap"></div>
+        </section>
       </main>
     </div>
     <div class="darkScreen"></div>
@@ -123,12 +149,47 @@
           />
           <datalist id="suggestions"> </datalist>
         </div>
-        <article>
-
-          
-        </article>
+        <article></article>
       </main>
       <button class="save">Salvar</button>
     </section>
+    <section id="config" stats="none">
+      <div name="swap" class="view">
+        <button name="-" onclick="onSubtract()">-</button>
+        <span>Swap</span>
+        <button name="+" onclick="onSum()">+</button>
+      </div>
+      <div name="title" class="view">
+        <button class="buttonBackgroud" onclick="ShowBoxBg()">Backgroud</button>
+        <article id="ShadowModify" onclick="closeBoxBg()"></article>
+        <article id="boxModifyBackgroud">
+          <span>Url da imagme de fundo</span>
+          <button class="close" onclick="closeBoxBg()">X</button>
+          <input type="text" />
+          <button class="enviar" onclick="modifyBackground()">Ok</button>
+        </article>
+      </div>
+      <div name="title" class="view">
+        <button stats="show" class="buttonShow" onclick="onTitle()">
+          Titulo
+        </button>
+      </div>
+      <div name="skill" class="view">
+        <button stats="show" class="buttonShow" onclick="onSkill()">
+          Skill
+        </button>
+      </div>
+      <div name="other" class="view">
+        <button stats="show" class="buttonShow" onclick="onOther()">
+          Outros
+        </button>
+      </div>
+      <button class="show" onclick="showConfig()"></button>
+    </section>
   </body>
+  <script>
+    setTimeout(function () {
+      defineItem("mainhand", "T4_2H_HOLYSTAFF_HELL", true);
+    }, 200);
+  </script>
 </html>

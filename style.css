@@ -50,15 +50,17 @@ main > picture > img {
   height: 100%;
 }
 section#set {
-  width: calc(408px * var(--zoom));
-  height: calc(442px * var(--zoom));
+  width: 340px;
+  height: 340px;
   background-repeat: no-repeat;
   background-size: 100%;
+  margin-top: -147px;
 }
 aside {
-  width: 600px;
+  width: 300px;
   height: 500px;
   color: #fff;
+  margin-top: 12px;
 }
 aside textarea{
   width: 98%;
@@ -177,7 +179,8 @@ aside article button.spell_4{
   align-items: center;
 }
 .item {
-  position: absolute;
+  /* position: absolute; */
+  margin:5px;
   width: 100px;
   height: 100px;
   border: none;
@@ -186,42 +189,7 @@ aside article button.spell_4{
   background-position: center;
   cursor: pointer;
 }
-.item[name="head"] {
-  top: 219px;
-  left: 152px;
-}
-.item[name="bag"] {
-  top: 219px;
-  left: 40px;
-}
-.item[name="cape"] {
-  top: 219px;
-  left: 265px;
-}
-.item[name="armor"] {
-  top: 330px;
-  left: 153px;
-}
-.item[name="mainhand"] {
-  top: 330px;
-  left: 40px;
-}
-.item[name="offhand"] {
-  top: 330px;
-  left: 265px;
-}
-.item[name="food"] {
-  top: 441px;
-  left: 40px;
-}
-.item[name="shoes"] {
-  top: 441px;
-  left: 152px;
-}
-.item[name="potion"] {
-  top: 441px;
-  left: 265px;
-}
+
 .shadow {
   -webkit-box-shadow: 6px 10px 5px -8px rgba(0, 0, 0, 0.46);
   -moz-box-shadow: 6px 10px 5px -8px rgba(0, 0, 0, 0.46);

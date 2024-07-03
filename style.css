@@ -67,8 +67,9 @@ width:300px;
 color:#fff;
 margin-top:12px;
 }
-aside:nth-child(2){
-  margin-right: 10px;
+aside[name=other]{
+  margin-left: 10px;
+  display: none;
 }
 
 aside article {

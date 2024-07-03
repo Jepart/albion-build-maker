@@ -417,7 +417,7 @@ onSkill = () => {
 };
 onOther = () => {
   $("aside[name=other]").toggle();
-  var button = $("div[name=skill]>button");
+  var button = $("div[name=other]>button");
   button.attr("stats", button.attr("stats") == "hide" ? "show" : "hide");
 };
 onSubtract = () => {

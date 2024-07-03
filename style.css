@@ -21,6 +21,7 @@ div#boss {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 main {
   display: flex;
@@ -60,7 +61,7 @@ aside {
   color: #fff;
 }
 aside textarea{
-  width: 98%;
+  width: 400px;
   height: 110px;
   background-color: transparent;
   border: none;
@@ -70,7 +71,7 @@ aside textarea{
   font-size: 18px;
 }
 aside article{
-  width: 100%;
+  width: 400px;
   height: 75px;
   margin: 5px 0;
   background-color: rgba(0, 0, 0, 0.226);

@@ -112,6 +112,7 @@ div.list_spells{
   justify-content: center;
   align-items: center;
   display: none;
+  z-index: 999;
 }
 
 div.list_spells img{

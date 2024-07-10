@@ -5,19 +5,25 @@ defineSwap = (num, tag) => {
     `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
   );
 };
-substituirNomes = (string)=>{
-  var niveis = [" do Adepto", " do Perito", " do Mestre", " do Grão-mestre", " do Ancião"];
+substituirNomes = (string) => {
+  var niveis = [
+    " do Adepto",
+    " do Perito",
+    " do Mestre",
+    " do Grão-mestre",
+    " do Ancião",
+  ];
   var substituicao = "";
 
-  $.each(niveis, function(index, valor) {
-      if (string.includes(valor)) {
-          string = string.replace(valor, substituicao);
-      }
+  $.each(niveis, function (index, valor) {
+    if (string.includes(valor)) {
+      string = string.replace(valor, substituicao);
+    }
   });
 
   return string;
-}
-defineItem = (slot, tag, twohand = "false") => {
+};
+defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 = null, spell4=null) => {
   const select = $(`.item[name=${slot}]`);
   select.attr(
     "style",
@@ -46,20 +52,48 @@ defineItem = (slot, tag, twohand = "false") => {
 
     var selectSpells = $(`article[name=${slot}] > .spellList`);
     selectSpells.find("span").attr("style", "display:block;");
-    selectSpells.find('h5').text(substituirNomes(findItem['LocalizedNames']['PT-BR']))
+    selectSpells
+      .find("h5")
+      .text(substituirNomes(findItem["LocalizedNames"]["PT-BR"]));
     $(`article[name=${slot}]`).find("div.list_spells").children().remove();
     $(`article[name=${slot}]`)
       .find(".spells > button")
       .attr("style", `background-image: none;`);
+    var spell_1 = 1
+    var spell_2 = 1
+    var spell_3 = 1
+    var spell_4 = 1
     findItem["craftingspelllist"]["craftspell"].forEach((e) => {
       if (e["slots"] == "1") {
-        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1">`;
+        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1" numspell="${spell_1}">`;
+        
         selectSpells
           .children("span[name=spell_1]")
           .find("div.list_spells")
           .append(string);
+
+      if(spell1 === spell_1){
+        selectSpells
+          .children("span[name=spell_1]")
+          .find("button")
+          .attr(
+            "style",
+            `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+          );
+      }
+      spell_1 ++
       } else if (e["slots"] == "2") {
-        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_2">`;
+        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_2" numspell="${spell_2}">`;
+        if(spell2 === spell_2){
+          selectSpells
+            .children("span[name=spell_2]")
+            .find("button")
+            .attr(
+              "style",
+              `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+            );
+        }
+        spell_2 ++
         selectSpells
           .children("span[name=spell_2]")
           .find("div.list_spells")
@@ -73,7 +107,17 @@ defineItem = (slot, tag, twohand = "false") => {
             `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
           );
       } else {
-        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_4">`;
+        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_4" numspell="${spell_4}">`;
+        if(spell4 === spell_4){
+          selectSpells
+            .children("span[name=spell_4]")
+            .find("button")
+            .attr(
+              "style",
+              `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+            );
+        }
+        spell_4 ++
         selectSpells
           .children("span[name=spell_4]")
           .find("div.list_spells")
@@ -109,7 +153,9 @@ defineItem = (slot, tag, twohand = "false") => {
 
     var selectSpells = $(`article[name=${slot}] > .spellList`);
     selectSpells.find("span").attr("style", "display:block;");
-    selectSpells.find('h5').text(substituirNomes(findItem['LocalizedNames']['PT-BR']))
+    selectSpells
+      .find("h5")
+      .text(substituirNomes(findItem["LocalizedNames"]["PT-BR"]));
     $(`article[name=${slot}]`).find("div.list_spells").children().remove();
     $(`article[name=${slot}]`)
       .find(".spells > button")
@@ -154,7 +200,9 @@ defineItem = (slot, tag, twohand = "false") => {
 
     var selectSpells = $(`article[name=${slot}] > .spellList`);
     selectSpells.find("span").attr("style", "display:block;");
-    selectSpells.find('h5').text(substituirNomes(findItem['LocalizedNames']['PT-BR']))
+    selectSpells
+      .find("h5")
+      .text(substituirNomes(findItem["LocalizedNames"]["PT-BR"]));
     $("article[name=armor]").find("div.list_spells").children().remove();
     $("article[name=armor]")
       .find(".spells > button")
@@ -223,7 +271,9 @@ defineItem = (slot, tag, twohand = "false") => {
 
     var selectSpells = $(`article[name=${slot}] > .spellList`);
     selectSpells.find("span").attr("style", "display:block;");
-    selectSpells.find('h5').text(substituirNomes(findItem['LocalizedNames']['PT-BR']))
+    selectSpells
+      .find("h5")
+      .text(substituirNomes(findItem["LocalizedNames"]["PT-BR"]));
     $("article[name=shoes]").find("div.list_spells").children().remove();
     $("article[name=shoes]")
       .find(".spells > button")
@@ -264,7 +314,9 @@ defineItem = (slot, tag, twohand = "false") => {
     );
     let findSlot = item.find((item) => item._id === slot);
     let findItem = findSlot["items"].find((item) => item._id === tag);
-    $(`article[name=${slot}] > h5`).text(substituirNomes(findItem['LocalizedNames']['PT-BR']))
+    $(`article[name=${slot}] > h5`).text(
+      substituirNomes(findItem["LocalizedNames"]["PT-BR"])
+    );
   }
   if (slot == "potion") {
     let spellItem = $(`article[name=${slot}] > button.itemSelected`);
@@ -274,7 +326,9 @@ defineItem = (slot, tag, twohand = "false") => {
     );
     let findSlot = item.find((item) => item._id === slot);
     let findItem = findSlot["items"].find((item) => item._id === tag);
-    $(`article[name=${slot}] > h5`).text(substituirNomes(findItem['LocalizedNames']['PT-BR']))
+    $(`article[name=${slot}] > h5`).text(
+      substituirNomes(findItem["LocalizedNames"]["PT-BR"])
+    );
   }
   if (slot == "food") {
     let spellItem = $(`article[name=${slot}] > button.itemSelected`);
@@ -284,7 +338,9 @@ defineItem = (slot, tag, twohand = "false") => {
     );
     let findSlot = item.find((item) => item._id === slot);
     let findItem = findSlot["items"].find((item) => item._id === tag);
-    $(`article[name=${slot}] > h5`).text(substituirNomes(findItem['LocalizedNames']['PT-BR']))
+    $(`article[name=${slot}] > h5`).text(
+      substituirNomes(findItem["LocalizedNames"]["PT-BR"])
+    );
   }
   if (slot == "offhand") {
     let spellItem = $(`article[name=${slot}] > button.itemSelected`);
@@ -294,7 +350,9 @@ defineItem = (slot, tag, twohand = "false") => {
     );
     let findSlot = item.find((item) => item._id === slot);
     let findItem = findSlot["items"].find((item) => item._id === tag);
-    $(`article[name=${slot}] > h5`).text(substituirNomes(findItem['LocalizedNames']['PT-BR']))
+    $(`article[name=${slot}] > h5`).text(
+      substituirNomes(findItem["LocalizedNames"]["PT-BR"])
+    );
   }
 };
 
@@ -443,3 +501,35 @@ onSum = () => {
     });
   }
 };
+
+function getUrlParameters(url) {
+  var params = {};
+  var parser = document.createElement("a");
+  parser.href = url;
+  var query = parser.search.substring(1);
+  var vars = query.split("&");
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split("=");
+    params[pair[0]] = decodeURIComponent(pair[1]);
+  }
+  return params;
+}
+
+getUrlBuild = () => {
+  var getParams = getUrlParameters(window.location.href);
+  //http://127.0.0.1:3000/?bag=T4_BAG&head=T2_HEAD_PLATE_SET1&cape=T4_CAPE&mainhand=T4_MAIN_CURSEDSTAFF&armor=T7_ARMOR_PLATE_SET1&offhand=T7_OFF_TOWERSHIELD_UNDEAD&potion=T5_POTION_REVIVE&shoes=T4_SHOES_PLATE_SET2&food=T4_FISH_FRESHWATER_ALL_COMMON
+  $.map(getParams, function (elementOrValue, indexOrKey) {
+    console.log(elementOrValue,indexOrKey);
+    defineItem(indexOrKey,elementOrValue,false,1,2,null,2)
+    // bag=T4_BAG
+    // head=T2_HEAD_PLATE_SET1
+    // cape=T2_CAPE
+    // mainhand=T4_MAIN_CURSEDSTAFF
+    // armor=T7_ARMOR_PLATE_SET1
+    // offhand=T7_OFF_TOWERSHIELD_UNDEAD
+    // potion=T5_POTION_REVIVE
+    // shoes=T4_SHOES_PLATE_SET2
+    // food=T4_FISH_FRESHWATER_ALL_COMMON
+  });
+}
+

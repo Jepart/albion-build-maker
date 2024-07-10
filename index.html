@@ -8,14 +8,16 @@
     <link rel="stylesheet" href="style.css?v=3" />
     <script>
       var item;
-
+      
       $.get("assets/item.json", function (data) {
         item = data;
+        getUrlBuild()
+        
       }).fail(function (error) {
         console.error("Erro na solicitação AJAX:", error);
       });
-    </script>
-    <script src="script.js?v=3" defer></script>
+      </script>
+      <script src="script.js?v=3" defer></script>
   </head>
   <body>
     <div id="boss">

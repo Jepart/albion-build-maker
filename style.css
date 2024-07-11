@@ -452,3 +452,48 @@ cursor:pointer;
   border: 1px solid #525252;
   width: 86%;
 }
+
+section#share{
+  position:absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+}
+
+section#share button#open{
+  width: 25px;
+  height: 25px;
+  background-image: url('https://www.svgrepo.com/show/521564/close.svg');
+  background-size: 100%;
+  background-color: transparent;
+  background-position: center;
+  filter: invert(.5);
+  border: none;
+}
+section#share button#go{
+  border-radius: 10px;
+  border:none;
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+section#share input{
+  border: none;
+  border-radius: 10px;
+  background-color: #ffffff6b;
+}
+
+section#share[name=close] button#open{
+  background-image: url('https://www.svgrepo.com/show/522278/share.svg');
+}
+section#share[name=close] button#go{
+  display: none;
+}
+section#share[name=close] input{
+  display: none;
+}

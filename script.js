@@ -3,7 +3,7 @@ defineSwap = (num, tag) => {
   select.attr(
     "style",
     `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
-  );
+  ).attr('tag',tag);
 };
 substituirNomes = (string) => {
   var niveis = [
@@ -23,32 +23,44 @@ substituirNomes = (string) => {
 
   return string;
 };
-defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 = null, spell4=null) => {
+defineItem = (
+  slot,
+  tag,
+  spell1 = null,
+  spell2 = null,
+  spell3 = null,
+  spell4 = null
+) => {
   const select = $(`.item[name=${slot}]`);
   select.attr(
     "style",
     `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
   );
   if (slot == "mainhand") {
-    let offhand = $(`.item[name=offhand]`);
-    if (offhand.attr("twohand") == "true") {
-      offhand.attr("style", `background-image: none;`);
-    }
-    offhand.attr("twohand", twohand);
-    if (twohand == "true") {
-      offhand.attr(
-        "style",
-        `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
-      );
-    }
-
     let spellItem = $(`article[name=${slot}] > button.itemSelected`);
+    spellItem.attr("tag", tag);
+
     spellItem.attr(
       "style",
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
     );
     let findSlot = item.find((item) => item._id === slot);
     let findItem = findSlot["items"].find((item) => item._id === tag);
+    console.log(findItem["twohand"]);
+    let twohand = findItem["twohand"] ? true : false;
+    let offhand = $(`.item[name=offhand]`);
+    offhand.attr("twohand", twohand);
+    if (twohand) {
+      if (offhand.attr("twohand") == "true") {
+        offhand.attr("style", `background-image: none;`);
+      }
+      if (twohand == "true") {
+        offhand.attr(
+          "style",
+          `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
+        );
+      }
+    }
 
     var selectSpells = $(`article[name=${slot}] > .spellList`);
     selectSpells.find("span").attr("style", "display:block;");
@@ -59,41 +71,41 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
     $(`article[name=${slot}]`)
       .find(".spells > button")
       .attr("style", `background-image: none;`);
-    var spell_1 = 1
-    var spell_2 = 1
-    var spell_3 = 1
-    var spell_4 = 1
+    var spell_1 = 1;
+    var spell_2 = 1;
+    var spell_3 = 1;
+    var spell_4 = 1;
     findItem["craftingspelllist"]["craftspell"].forEach((e) => {
       if (e["slots"] == "1") {
         var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1" numspell="${spell_1}">`;
-        
+
         selectSpells
           .children("span[name=spell_1]")
           .find("div.list_spells")
           .append(string);
 
-      if(spell1 === spell_1){
-        selectSpells
-          .children("span[name=spell_1]")
-          .find("button")
-          .attr(
-            "style",
-            `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-          );
-      }
-      spell_1 ++
+        if (spell1 == spell_1) {
+          selectSpells
+            .children("span[name=spell_1]")
+            .find("button")
+            .attr(
+              "style",
+              `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+            ).attr('numSpell',spell_1);
+        }
+        spell_1++;
       } else if (e["slots"] == "2") {
         var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_2" numspell="${spell_2}">`;
-        if(spell2 === spell_2){
+        if (spell2 == spell_2) {
           selectSpells
             .children("span[name=spell_2]")
             .find("button")
             .attr(
               "style",
               `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-            );
+            ).attr('numSpell',spell_1);;
         }
-        spell_2 ++
+        spell_2++;
         selectSpells
           .children("span[name=spell_2]")
           .find("div.list_spells")
@@ -108,16 +120,16 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
           );
       } else {
         var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_4" numspell="${spell_4}">`;
-        if(spell4 === spell_4){
+        if (spell4 == spell_4) {
           selectSpells
             .children("span[name=spell_4]")
             .find("button")
             .attr(
               "style",
               `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-            );
+            ).attr('numSpell',spell_1);;
         }
-        spell_4 ++
+        spell_4++;
         selectSpells
           .children("span[name=spell_4]")
           .find("div.list_spells")
@@ -133,6 +145,7 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
         );
         var img = $(this).attr("src");
         button.attr("style", `background-image: url("${img}");`);
+        button.attr("numspell", $(this).attr("numspell"));
       }
     );
   }
@@ -144,6 +157,7 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
   // -----------------------
   if (slot == "head") {
     let spellItem = $(`article[name=${slot}] > button.itemSelected`);
+    spellItem.attr("tag", tag);
     spellItem.attr(
       "style",
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
@@ -160,16 +174,41 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
     $(`article[name=${slot}]`)
       .find(".spells > button")
       .attr("style", `background-image: none;`);
+
+    var spell_1 = 1;
+    var spell_2 = 1;
+    var spell_3 = 1;
+    var spell_4 = 1;
     findItem["craftingspelllist"]["craftspell"].forEach((e) => {
       if (e["uniquename"].indexOf("PASSIVE") == -1) {
-        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1">`;
-        console.log(selectSpells.parent());
+        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1" numspell="${spell_1}">`;
+
+        if (spell1 == spell_1) {
+          selectSpells
+            .children("span[name=spell_1]")
+            .find("button")
+            .attr(
+              "style",
+              `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+            ).attr('numSpell',spell_1);;
+        }
+        spell_1++;
         selectSpells
           .children("span[name=spell_1]")
           .find("div.list_spells")
           .append(string);
       } else {
-        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_2">`;
+        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_2" numspell="${spell_2}">`;
+        if (spell1 == spell_2) {
+          selectSpells
+            .children("span[name=spell_2]")
+            .find("button")
+            .attr(
+              "style",
+              `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+            ).attr('numSpell',spell_1);
+        }
+        spell_2++;
         selectSpells
           .children("span[name=spell_2]")
           .find("div.list_spells")
@@ -185,12 +224,14 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
         );
         var img = $(this).attr("src");
         button.attr("style", `background-image: url("${img}");`);
+        button.attr("numspell", $(this).attr("numspell"));
       }
     );
   }
   // -----------------------
   if (slot == "armor") {
     let spellItem = $("article[name=armor] > button.itemSelected");
+    spellItem.attr('tag',tag)
     spellItem.attr(
       "style",
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
@@ -207,18 +248,43 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
     $("article[name=armor]")
       .find(".spells > button")
       .attr("style", `background-image: none;`);
+
+    var spell_1 = 1;
+    var spell_2 = 1;
+    var spell_3 = 1;
+    var spell_4 = 1;
     findItem["craftingspelllist"]["craftspell"].forEach((e) => {
       if (tag.indexOf("ARMOR_PLATE") == -1) {
         selectSpells.parent().find("span[name=spell_3]").fadeOut();
         if (e["uniquename"].indexOf("PASSIVE") == -1) {
-          console.log(tag);
-          var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1">`;
+          
+          var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1" numspell="${spell_1}">`;
+          if (spell1 == spell_1) {
+            selectSpells
+              .children("span[name=spell_1]")
+              .find("button")
+              .attr(
+                "style",
+                `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+              ).attr('numSpell',spell_1);
+          }
+          spell_1++;
           selectSpells
             .children("span[name=spell_1]")
             .find("div.list_spells")
             .append(string);
         } else {
-          var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_2">`;
+          var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_2" numspell="${spell_2}">`;
+          if (spell2 == spell_2) {
+            selectSpells
+              .children("span[name=spell_2]")
+              .find("button")
+              .attr(
+                "style",
+                `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+              ).attr('numSpell',spell_2);
+          }
+          spell_2++;
           selectSpells
             .children("span[name=spell_2]")
             .find("div.list_spells")
@@ -227,19 +293,49 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
       } else {
         selectSpells.parent().find("span[name=spell_3]").fadeIn();
         if (e["slots"] == "1") {
-          var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_2">`;
+          var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_2" numspell="${spell_2}">`;
+          if (spell2 == spell_2) {
+            selectSpells
+              .children("span[name=spell_2]")
+              .find("button")
+              .attr(
+                "style",
+                `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+              ).attr('numSpell',spell_2);
+          }
+          spell_2++;
           selectSpells
             .children("span[name=spell_2]")
             .find("div.list_spells")
             .append(string);
         } else if (e["slots"] == "2") {
-          var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_3">`;
+          var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_3" numspell="${spell_3}">`;
+          if (spell3 == spell_3) {
+            selectSpells
+              .children("span[name=spell_3]")
+              .find("button")
+              .attr(
+                "style",
+                `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+              ).attr('numSpell',spell_3);
+          }
+          spell_3++;
           selectSpells
             .children("span[name=spell_3]")
             .find("div.list_spells")
             .append(string);
         } else {
-          var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1">`;
+          var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1" numspell="${spell_1}">`;
+          if (spell1 == spell_1) {
+            selectSpells
+              .children("span[name=spell_1]")
+              .find("button")
+              .attr(
+                "style",
+                `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+              ).attr('numSpell',spell_1);
+          }
+          spell_1++;
           selectSpells
             .children("span[name=spell_1]")
             .find("div.list_spells")
@@ -256,12 +352,14 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
         );
         var img = $(this).attr("src");
         button.attr("style", `background-image: url("${img}");`);
+        button.attr("numspell", $(this).attr("numspell"));
       }
     );
   }
   // -----------------------
   if (slot == "shoes") {
     let spellItem = $("article[name=shoes] > button.itemSelected");
+    spellItem.attr('tag',tag)
     spellItem.attr(
       "style",
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
@@ -278,15 +376,40 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
     $("article[name=shoes]")
       .find(".spells > button")
       .attr("style", `background-image: none;`);
+
+    var spell_1 = 1;
+    var spell_2 = 1;
+    var spell_3 = 1;
+    var spell_4 = 1;
     findItem["craftingspelllist"]["craftspell"].forEach((e) => {
       if (e["uniquename"].indexOf("PASSIVE") == -1) {
-        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1">`;
+        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1" numspell="${spell_1}">`;
+        if (spell1 == spell_1) {
+          selectSpells
+            .children("span[name=spell_1]")
+            .find("button")
+            .attr(
+              "style",
+              `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+            ).attr('numSpell',spell_1);;
+        }
+        spell_1++;
         selectSpells
           .children("span[name=spell_1]")
           .find("div.list_spells")
           .append(string);
       } else {
-        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_2">`;
+        var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_2" numspell="${spell_2}">`;
+        if (spell2 == spell_2) {
+          selectSpells
+            .children("span[name=spell_2]")
+            .find("button")
+            .attr(
+              "style",
+              `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
+            ).attr('numSpell',spell_1);;
+        }
+        spell_2++;
         selectSpells
           .children("span[name=spell_2]")
           .find("div.list_spells")
@@ -302,12 +425,15 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
         );
         var img = $(this).attr("src");
         button.attr("style", `background-image: url("${img}");`);
+        var numspell = $(this).attr("numspell");
+        button.attr("numspell", numspell);
       }
     );
   }
   // -----------------------
   if (slot == "cape") {
     let spellItem = $(`article[name=${slot}] > button.itemSelected`);
+    spellItem.attr("tag", tag);
     spellItem.attr(
       "style",
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
@@ -320,6 +446,7 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
   }
   if (slot == "potion") {
     let spellItem = $(`article[name=${slot}] > button.itemSelected`);
+    spellItem.attr("tag", tag);
     spellItem.attr(
       "style",
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
@@ -332,6 +459,7 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
   }
   if (slot == "food") {
     let spellItem = $(`article[name=${slot}] > button.itemSelected`);
+    spellItem.attr("tag", tag);
     spellItem.attr(
       "style",
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
@@ -344,6 +472,7 @@ defineItem = (slot, tag, twohand = "false",spell1 = null, spell2 = null,spell3 =
   }
   if (slot == "offhand") {
     let spellItem = $(`article[name=${slot}] > button.itemSelected`);
+    spellItem.attr("tag", tag);
     spellItem.attr(
       "style",
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
@@ -388,7 +517,6 @@ createItens = (slot = "mainhand", num = "") => {
       item.forEach((e) => {
         e["items"].forEach((item) => {
           try {
-            console.log(item["_id"]);
             string = `<picture name="${item["_id"]}" language="${item["LocalizedNames"]["PT-BR"]}">
             <img src="https://render.albiononline.com/v1/item/${item["_id"]}"/>            
             </picture>`;
@@ -482,7 +610,6 @@ onSubtract = () => {
   var buttons = $(".itemSelectSwap > button");
   buttons.last().remove();
   if (buttons.length - 1 == 0) {
-    console.log(buttons);
     $("#swap").fadeOut();
   }
 };
@@ -517,19 +644,63 @@ function getUrlParameters(url) {
 
 getUrlBuild = () => {
   var getParams = getUrlParameters(window.location.href);
-  //http://127.0.0.1:3000/?bag=T4_BAG&head=T2_HEAD_PLATE_SET1&cape=T4_CAPE&mainhand=T4_MAIN_CURSEDSTAFF&armor=T7_ARMOR_PLATE_SET1&offhand=T7_OFF_TOWERSHIELD_UNDEAD&potion=T5_POTION_REVIVE&shoes=T4_SHOES_PLATE_SET2&food=T4_FISH_FRESHWATER_ALL_COMMON
+  //http://127.0.0.1:3000/?bag=T4_BAG&head=T5_HEAD_PLATE_SET1|1|1||&cape=T4_CAPE&mainhand=T4_MAIN_CURSEDSTAFF|1|3||2&armor=T7_ARMOR_PLATE_SET1&offhand=T7_OFF_TOWERSHIELD_UNDEAD&potion=T5_POTION_REVIVE&shoes=T4_SHOES_PLATE_SET2&food=T4_FISH_FRESHWATER_ALL_COMMON
   $.map(getParams, function (elementOrValue, indexOrKey) {
-    console.log(elementOrValue,indexOrKey);
-    defineItem(indexOrKey,elementOrValue,false,1,2,null,2)
-    // bag=T4_BAG
-    // head=T2_HEAD_PLATE_SET1
-    // cape=T2_CAPE
-    // mainhand=T4_MAIN_CURSEDSTAFF
-    // armor=T7_ARMOR_PLATE_SET1
-    // offhand=T7_OFF_TOWERSHIELD_UNDEAD
-    // potion=T5_POTION_REVIVE
-    // shoes=T4_SHOES_PLATE_SET2
-    // food=T4_FISH_FRESHWATER_ALL_COMMON
+    var a = elementOrValue.split("|");
+    if (indexOrKey != "swap") {
+      defineItem(indexOrKey, a[0], a[1], a[2], a[3], a[4]);
+    } else {
+      a.forEach(function (v, i) {
+        onSum();
+        defineSwap(`all_${i + 1}`, v);
+      });
+    }
   });
-}
+};
 
+$("section#share >button#open").click(function (e) {
+  var selectShare = $("section#share");
+  if (selectShare.attr("name") == "close") {
+    selectShare.attr("name", "open");
+  } else {
+    selectShare.attr("name", "close");
+  }
+});
+$("section#share >button#go").click(function (e) {
+  gerarLink()
+});
+
+gerarLink = () =>{
+  var linkBase = window.location.origin;
+  var param =[]
+  var skill = $("aside[name=skill] > article")
+  $.map($("aside[name=skill] > article"), function (e, i) {
+    var temp = []
+    if ($(e).find('button.itemSelected').attr('tag') != undefined){
+      temp.push($(e).attr('name') + "=" + $(e).find('button.itemSelected').attr('tag'))
+      temp.push($(e).find('.spellList > span[name=spell_1] > button').attr('numspell'))
+      temp.push($(e).find('.spellList > span[name=spell_2] > button').attr('numspell'))
+      temp.push($(e).find('.spellList > span[name=spell_3] > button').attr('numspell'))
+      temp.push($(e).find('.spellList > span[name=spell_4] > button').attr('numspell'))
+      param.push(temp.join('|'))
+    }
+  });
+  $.map($("aside[name=other] > article"), function (e, i) {
+    var temp = []
+    if ($(e).find('button.itemSelected').attr('tag') != undefined){
+      temp.push($(e).attr('name'))
+      temp.push($(e).find('button.itemSelected').attr('tag'))
+      param.push(temp.join('='))
+    }
+  });
+  var temp = []
+  if($("section#swap > .itemSelectSwap > button").length>0){
+
+    $.map($("section#swap > .itemSelectSwap > button"), function (e, i) {
+      temp.push($(e).attr('tag'))
+    });
+    param.push('swap=' + temp.join('|'))
+  }
+  
+  $("section#share > input").val(linkBase+"?"+param.join('&'));
+}

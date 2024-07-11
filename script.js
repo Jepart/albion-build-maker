@@ -649,7 +649,10 @@ getUrlBuild = () => {
     var a = elementOrValue.split("|");
     if (indexOrKey != "swap") {
       defineItem(indexOrKey, a[0], a[1], a[2], a[3], a[4]);
-    } else {
+    }else if (indexOrKey == 'title'){
+      $('textarea.title').val(elementOrValue)
+    }
+     else {
       a.forEach(function (v, i) {
         onSum();
         defineSwap(`all_${i + 1}`, v);
@@ -674,6 +677,7 @@ gerarLink = () =>{
   var linkBase = window.location.origin;
   var param =[]
   var skill = $("aside[name=skill] > article")
+  param.push('title='+$('textarea.title').val())
   $.map($("aside[name=skill] > article"), function (e, i) {
     var temp = []
     if ($(e).find('button.itemSelected').attr('tag') != undefined){

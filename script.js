@@ -702,5 +702,5 @@ gerarLink = () =>{
     param.push('swap=' + temp.join('|'))
   }
   
-  $("section#share > input").val(linkBase+"?"+param.join('&'));
+  $("section#share > input").val(linkBase+"/?"+param.join('&'));
 }

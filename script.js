@@ -1,9 +1,11 @@
 defineSwap = (num, tag) => {
   const select = $(`#swap > .itemSelectSwap > .item[num=${num}]`);
-  select.attr(
-    "style",
-    `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
-  ).attr('tag',tag);
+  select
+    .attr(
+      "style",
+      `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
+    )
+    .attr("tag", tag);
 };
 substituirNomes = (string) => {
   var niveis = [
@@ -91,7 +93,8 @@ defineItem = (
             .attr(
               "style",
               `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-            ).attr('numSpell',spell_1);
+            )
+            .attr("numSpell", spell_1);
         }
         spell_1++;
       } else if (e["slots"] == "2") {
@@ -103,7 +106,8 @@ defineItem = (
             .attr(
               "style",
               `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-            ).attr('numSpell',spell_1);;
+            )
+            .attr("numSpell", spell_1);
         }
         spell_2++;
         selectSpells
@@ -127,7 +131,8 @@ defineItem = (
             .attr(
               "style",
               `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-            ).attr('numSpell',spell_1);;
+            )
+            .attr("numSpell", spell_1);
         }
         spell_4++;
         selectSpells
@@ -190,7 +195,8 @@ defineItem = (
             .attr(
               "style",
               `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-            ).attr('numSpell',spell_1);;
+            )
+            .attr("numSpell", spell_1);
         }
         spell_1++;
         selectSpells
@@ -206,7 +212,8 @@ defineItem = (
             .attr(
               "style",
               `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-            ).attr('numSpell',spell_1);
+            )
+            .attr("numSpell", spell_1);
         }
         spell_2++;
         selectSpells
@@ -231,7 +238,7 @@ defineItem = (
   // -----------------------
   if (slot == "armor") {
     let spellItem = $("article[name=armor] > button.itemSelected");
-    spellItem.attr('tag',tag)
+    spellItem.attr("tag", tag);
     spellItem.attr(
       "style",
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
@@ -257,7 +264,6 @@ defineItem = (
       if (tag.indexOf("ARMOR_PLATE") == -1) {
         selectSpells.parent().find("span[name=spell_3]").fadeOut();
         if (e["uniquename"].indexOf("PASSIVE") == -1) {
-          
           var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1" numspell="${spell_1}">`;
           if (spell1 == spell_1) {
             selectSpells
@@ -266,7 +272,8 @@ defineItem = (
               .attr(
                 "style",
                 `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-              ).attr('numSpell',spell_1);
+              )
+              .attr("numSpell", spell_1);
           }
           spell_1++;
           selectSpells
@@ -282,7 +289,8 @@ defineItem = (
               .attr(
                 "style",
                 `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-              ).attr('numSpell',spell_2);
+              )
+              .attr("numSpell", spell_2);
           }
           spell_2++;
           selectSpells
@@ -301,7 +309,8 @@ defineItem = (
               .attr(
                 "style",
                 `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-              ).attr('numSpell',spell_2);
+              )
+              .attr("numSpell", spell_2);
           }
           spell_2++;
           selectSpells
@@ -317,7 +326,8 @@ defineItem = (
               .attr(
                 "style",
                 `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-              ).attr('numSpell',spell_3);
+              )
+              .attr("numSpell", spell_3);
           }
           spell_3++;
           selectSpells
@@ -333,7 +343,8 @@ defineItem = (
               .attr(
                 "style",
                 `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-              ).attr('numSpell',spell_1);
+              )
+              .attr("numSpell", spell_1);
           }
           spell_1++;
           selectSpells
@@ -359,7 +370,7 @@ defineItem = (
   // -----------------------
   if (slot == "shoes") {
     let spellItem = $("article[name=shoes] > button.itemSelected");
-    spellItem.attr('tag',tag)
+    spellItem.attr("tag", tag);
     spellItem.attr(
       "style",
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
@@ -391,7 +402,8 @@ defineItem = (
             .attr(
               "style",
               `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-            ).attr('numSpell',spell_1);;
+            )
+            .attr("numSpell", spell_1);
         }
         spell_1++;
         selectSpells
@@ -407,7 +419,8 @@ defineItem = (
             .attr(
               "style",
               `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
-            ).attr('numSpell',spell_1);;
+            )
+            .attr("numSpell", spell_1);
         }
         spell_2++;
         selectSpells
@@ -647,12 +660,11 @@ getUrlBuild = () => {
   //http://127.0.0.1:3000/?bag=T4_BAG&head=T5_HEAD_PLATE_SET1|1|1||&cape=T4_CAPE&mainhand=T4_MAIN_CURSEDSTAFF|1|3||2&armor=T7_ARMOR_PLATE_SET1&offhand=T7_OFF_TOWERSHIELD_UNDEAD&potion=T5_POTION_REVIVE&shoes=T4_SHOES_PLATE_SET2&food=T4_FISH_FRESHWATER_ALL_COMMON
   $.map(getParams, function (elementOrValue, indexOrKey) {
     var a = elementOrValue.split("|");
-    if (indexOrKey != "swap") {
+    if (indexOrKey == "title") {
+      $("textarea.title").val(elementOrValue);
+    } else if (indexOrKey != "swap") {
       defineItem(indexOrKey, a[0], a[1], a[2], a[3], a[4]);
-    }else if (indexOrKey == 'title'){
-      $('textarea.title').val(elementOrValue)
-    }
-     else {
+    } else {
       a.forEach(function (v, i) {
         onSum();
         defineSwap(`all_${i + 1}`, v);
@@ -670,41 +682,52 @@ $("section#share >button#open").click(function (e) {
   }
 });
 $("section#share >button#go").click(function (e) {
-  gerarLink()
+  gerarLink();
 });
 
-gerarLink = () =>{
+gerarLink = () => {
   var linkBase = window.location.origin;
-  var param =[]
-  var skill = $("aside[name=skill] > article")
-  param.push('title='+$('textarea.title').val())
+  var param = [];
+  var skill = $("aside[name=skill] > article");
+  param.push("title=" + $("textarea.title").val());
   $.map($("aside[name=skill] > article"), function (e, i) {
-    var temp = []
-    if ($(e).find('button.itemSelected').attr('tag') != undefined){
-      temp.push($(e).attr('name') + "=" + $(e).find('button.itemSelected').attr('tag'))
-      temp.push($(e).find('.spellList > span[name=spell_1] > button').attr('numspell'))
-      temp.push($(e).find('.spellList > span[name=spell_2] > button').attr('numspell'))
-      temp.push($(e).find('.spellList > span[name=spell_3] > button').attr('numspell'))
-      temp.push($(e).find('.spellList > span[name=spell_4] > button').attr('numspell'))
-      param.push(temp.join('|'))
+    var temp = [];
+    if ($(e).find("button.itemSelected").attr("tag") != undefined) {
+      temp.push(
+        $(e).attr("name") + "=" + $(e).find("button.itemSelected").attr("tag")
+      );
+      temp.push(
+        $(e).find(".spellList > span[name=spell_1] > button").attr("numspell")
+      );
+      temp.push(
+        $(e).find(".spellList > span[name=spell_2] > button").attr("numspell")
+      );
+      temp.push(
+        $(e).find(".spellList > span[name=spell_3] > button").attr("numspell")
+      );
+      temp.push(
+        $(e).find(".spellList > span[name=spell_4] > button").attr("numspell")
+      );
+      param.push(temp.join("|"));
     }
   });
   $.map($("aside[name=other] > article"), function (e, i) {
-    var temp = []
-    if ($(e).find('button.itemSelected').attr('tag') != undefined){
-      temp.push($(e).attr('name'))
-      temp.push($(e).find('button.itemSelected').attr('tag'))
-      param.push(temp.join('='))
+    var temp = [];
+    if ($(e).find("button.itemSelected").attr("tag") != undefined) {
+      temp.push($(e).attr("name"));
+      temp.push($(e).find("button.itemSelected").attr("tag"));
+      param.push(temp.join("="));
     }
   });
-  var temp = []
-  if($("section#swap > .itemSelectSwap > button").length>0){
-
+  var temp = [];
+  if ($("section#swap > .itemSelectSwap > button").length > 0) {
     $.map($("section#swap > .itemSelectSwap > button"), function (e, i) {
-      temp.push($(e).attr('tag'))
+      temp.push($(e).attr("tag"));
     });
-    param.push('swap=' + temp.join('|'))
+    param.push("swap=" + temp.join("|"));
   }
-  
-  $("section#share > input").val(linkBase+"/albion-build-maker/?"+param.join('&'));
-}
+
+  $("section#share > input").val(
+    linkBase + "/albion-build-maker/?" + param.join("&")
+  );
+};

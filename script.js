@@ -689,7 +689,7 @@ gerarLink = () => {
   var linkBase = window.location.origin;
   var param = [];
   var skill = $("aside[name=skill] > article");
-  param.push("title=" + $("textarea.title").val());
+  param.push("title=" + encodeURIComponent($("textarea.title").val()));
   $.map($("aside[name=skill] > article"), function (e, i) {
     var temp = [];
     if ($(e).find("button.itemSelected").attr("tag") != undefined) {

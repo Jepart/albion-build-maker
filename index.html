@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Albion Boss</title>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <link rel="stylesheet" href="style.css?v=5" />
+    <link rel="stylesheet" href="style.css?v=6" />
     <script>
       var item;
       
@@ -17,12 +17,12 @@
         console.error("Erro na solicitação AJAX:", error);
       });
       </script>
-      <script src="script.js?v=5" defer></script>
+      <script src="script.js?v=6" defer></script>
   </head>
   <body>
     <div id="boss">
       <main>
-        <picture
+        <picture class="icon"
           ><img
             src="https://cdn.discordapp.com/icons/1178047720221581322/cc11d07041cf5ee8ae8b226dbae32bc0.webp"
         /></picture>
@@ -170,6 +170,11 @@
           <input type="text" />
           <button class="enviar" onclick="modifyBackground()">Ok</button>
         </article>
+      </div>
+      <div name="icon" class="view">
+        <button stats="show" class="buttonShow" onclick="onIcon()">
+          Icone
+        </button>
       </div>
       <div name="title" class="view">
         <button stats="show" class="buttonShow" onclick="onTitle()">

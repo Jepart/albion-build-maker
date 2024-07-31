@@ -604,6 +604,11 @@ showConfig = () => {
     config.attr("stats", "active");
   }
 };
+onIcon = () => {
+  $("picture.icon").toggle();
+  var button = $("div[name=icon]>button");
+  button.attr("stats", button.attr("stats") == "hide" ? "show" : "hide");
+};
 onTitle = () => {
   $("textarea.title").toggle();
   var button = $("div[name=title]>button");

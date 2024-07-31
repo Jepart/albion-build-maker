@@ -12,7 +12,7 @@
       
       $.get("assets/item.json", function (data) {
         item = data;
-        
+        getUrlBuild()
       }).fail(function (error) {
         console.error("Erro na solicitação AJAX:", error);
       });

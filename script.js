@@ -658,6 +658,7 @@ function getUrlParameters(url) {
 
 getUrlBuild = () => {
   var getParams = getUrlParameters(window.location.href);
+  if(getParams.length){
   //http://127.0.0.1:3000/?bag=T4_BAG&head=T5_HEAD_PLATE_SET1|1|1||&cape=T4_CAPE&mainhand=T4_MAIN_CURSEDSTAFF|1|3||2&armor=T7_ARMOR_PLATE_SET1&offhand=T7_OFF_TOWERSHIELD_UNDEAD&potion=T5_POTION_REVIVE&shoes=T4_SHOES_PLATE_SET2&food=T4_FISH_FRESHWATER_ALL_COMMON
   $.map(getParams, function (elementOrValue, indexOrKey) {
     var a = elementOrValue.split("|");
@@ -672,6 +673,7 @@ getUrlBuild = () => {
       });
     }
   });
+}
 };
 
 $("section#share >button#open").click(function (e) {

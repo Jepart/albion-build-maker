@@ -48,20 +48,16 @@ defineItem = (
     );
     let findSlot = item.find((item) => item._id === slot);
     let findItem = findSlot["items"].find((item) => item._id === tag);
-    console.log(findItem["twohand"]);
-    let twohand = findItem["twohand"] ? true : false;
+    console.log(findItem["twohanded"]);
+    let twohand = findItem["twohanded"] ? true : false;
     let offhand = $(`.item[name=offhand]`);
     offhand.attr("twohand", twohand);
     if (twohand) {
-      if (offhand.attr("twohand") == "true") {
-        offhand.attr("style", `background-image: none;`);
-      }
-      if (twohand == "true") {
+
         offhand.attr(
           "style",
           `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
-        );
-      }
+        )
     }
 
     var selectSpells = $(`article[name=${slot}] > .spellList`);

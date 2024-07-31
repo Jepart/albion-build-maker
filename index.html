@@ -6,12 +6,12 @@
     <title>Albion Boss</title>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <link rel="stylesheet" href="style.css?v=6" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
       var item;
       
       $.get("assets/item.json", function (data) {
         item = data;
-        getUrlBuild()
         
       }).fail(function (error) {
         console.error("Erro na solicitação AJAX:", error);
@@ -198,5 +198,6 @@
       <input type="text" id="linkShare" readonly>
       <button id="open"></button>
     </section>
+    
   </body>
 </html>

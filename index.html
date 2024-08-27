@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Albion Boss</title>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <link rel="stylesheet" href="style.css?v=8" />
+    <link rel="stylesheet" href="style.css?v=9" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
       var item;
-      
+
       $.get("assets/item.json", function (data) {
         item = data;
-        getUrlBuild()
+        getUrlBuild();
+
       }).fail(function (error) {
         console.error("Erro na solicitação AJAX:", error);
       });
-      
-      </script>
-      <script src="script.js?v=8" defer></script>
+    </script>
+    <script src="script.js?v=9" defer></script>
   </head>
   <body>
     <div id="boss">
@@ -135,23 +135,32 @@
       </main>
     </div>
     <div class="darkScreen"></div>
-    <section id="selectItem" class="shadow" slot="head">
+    <section id="selectItem" class="shadow">
       <header>
         <h3>Selecione o Item</h3>
         <button class="close">X</button>
       </header>
       <main>
-        <div>
-          <input
-            type="text"
-            id="itemSelect"
-            autocomplete="on"
-            list="suggestions"
-            name="option"
-            placeholder="Procure pelo item"
-          />
-          <datalist id="suggestions"> </datalist>
-        </div>
+        <section>
+          <div>
+            <input
+              type="text"
+              id="itemSelect"
+              autocomplete="on"
+              list="suggestions"
+              name="option"
+              placeholder="Procure pelo item"
+            />
+            <datalist id="suggestions"> </datalist>
+          </div>
+          <div class="enchanted" enchanted="0">
+            <button value="0"></button>
+            <button value="1"></button>
+            <button value="2"></button>
+            <button value="3"></button>
+            <button value="4"></button>
+          </div>
+        </section>
         <article></article>
       </main>
       <button class="save">Salvar</button>
@@ -196,9 +205,9 @@
     </section>
     <section id="share" name="close">
       <button id="go">Gerar</button>
-      <input type="text" id="linkShare" readonly>
+      <input type="text" id="linkShare" readonly />
+      <button id="copyButton" title="Clique para copiar o link"></button>
       <button id="open"></button>
     </section>
-    
   </body>
 </html>

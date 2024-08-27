@@ -167,8 +167,9 @@ align-items:center;
 width:100px;
 height:100px;
 border:none;
+float: left;
 background-color:rgba(44,44,44,0.541);
-background-size:120%;
+background-size:110%;
 background-position:center;
 cursor:pointer;
 margin:5px;
@@ -237,6 +238,37 @@ float:left;
 width:100%;
 }
 
+#selectItem main section{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+#selectItem main section .enchanted button{
+  transform: rotate(45deg);
+  margin: 0 2px;
+  width: 10px;
+  height: 15px;
+  border: #000 2px solid;
+  background-color: rgb(66, 66, 66);
+  
+}
+#selectItem main section .enchanted[enchanted="0"] button{
+  background-color: rgb(66, 66, 66);
+}
+#selectItem main section .enchanted[enchanted="1"] button:nth-of-type(n+2):nth-of-type(-n+2){
+  background-color: rgb(73, 146, 55);
+}
+#selectItem main section .enchanted[enchanted="2"] button:nth-of-type(n+2):nth-of-type(-n+3){
+  background-color: rgb(34, 106, 165);
+}
+#selectItem main section .enchanted[enchanted="3"] button:nth-of-type(n+2):nth-of-type(-n+4){
+  background-color: rgb(124, 50, 184);
+}
+#selectItem main section .enchanted[enchanted="4"] button:nth-of-type(n+2):nth-of-type(-n+5){
+  background-color: rgb(178, 180, 31);
+}
 #selectItem article {
 width:100%;
 max-height:400px;
@@ -495,5 +527,19 @@ section#share[name=close] button#go{
   display: none;
 }
 section#share[name=close] input{
+  display: none;
+}
+
+button#copyButton{
+  width: 25px;
+  height: 25px;
+  background-image: url('https://www.svgrepo.com/show/496092/copy.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: transparent;
+  border: none;
+  filter: invert(1);
+}
+section#share[name=close] button#copyButton{
   display: none;
 }

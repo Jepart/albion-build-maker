@@ -38,6 +38,7 @@ defineItem = (
     "style",
     `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
   );
+  let noenchanted = tag.split('@')
   if (slot == "mainhand") {
     let spellItem = $(`article[name=${slot}] > button.itemSelected`);
     spellItem.attr("tag", tag);
@@ -47,13 +48,12 @@ defineItem = (
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
     );
     let findSlot = item.find((item) => item._id === slot);
-    let findItem = findSlot["items"].find((item) => item._id === tag);
-    console.log(findItem["twohanded"]);
+    let findItem = findSlot["items"].find((item) => item._id === noenchanted[0]);
     let twohand = findItem["twohanded"] ? true : false;
     let offhand = $(`.item[name=offhand]`);
     offhand.attr("twohand", twohand);
     if (twohand) {
-
+        $('aside[name=other] > article[name=offhand] > button.itemSelected').attr('tag',"")
         offhand.attr(
           "style",
           `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
@@ -164,7 +164,7 @@ defineItem = (
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
     );
     let findSlot = item.find((item) => item._id === slot);
-    let findItem = findSlot["items"].find((item) => item._id === tag);
+    let findItem = findSlot["items"].find((item) => item._id === noenchanted[0]);
 
     var selectSpells = $(`article[name=${slot}] > .spellList`);
     selectSpells.find("span").attr("style", "display:block;");
@@ -180,6 +180,7 @@ defineItem = (
     var spell_2 = 1;
     var spell_3 = 1;
     var spell_4 = 1;
+    
     findItem["craftingspelllist"]["craftspell"].forEach((e) => {
       if (e["uniquename"].indexOf("PASSIVE") == -1) {
         var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_1" numspell="${spell_1}">`;
@@ -201,7 +202,7 @@ defineItem = (
           .append(string);
       } else {
         var string = `<img src="https://render.albiononline.com/v1/spell/${e["uniquename"]}" spells="spell_2" numspell="${spell_2}">`;
-        if (spell1 == spell_2) {
+        if (spell2 == spell_2) {
           selectSpells
             .children("span[name=spell_2]")
             .find("button")
@@ -209,7 +210,7 @@ defineItem = (
               "style",
               `background-image: url("https://render.albiononline.com/v1/spell/${e["uniquename"]}");`
             )
-            .attr("numSpell", spell_1);
+            .attr("numSpell", spell_2);
         }
         spell_2++;
         selectSpells
@@ -240,7 +241,7 @@ defineItem = (
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
     );
     let findSlot = item.find((item) => item._id === slot);
-    let findItem = findSlot["items"].find((item) => item._id === tag);
+    let findItem = findSlot["items"].find((item) => item._id === noenchanted[0]);
 
     var selectSpells = $(`article[name=${slot}] > .spellList`);
     selectSpells.find("span").attr("style", "display:block;");
@@ -372,7 +373,7 @@ defineItem = (
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
     );
     let findSlot = item.find((item) => item._id === slot);
-    let findItem = findSlot["items"].find((item) => item._id === tag);
+    let findItem = findSlot["items"].find((item) => item._id === noenchanted[0]);
 
     var selectSpells = $(`article[name=${slot}] > .spellList`);
     selectSpells.find("span").attr("style", "display:block;");
@@ -448,7 +449,7 @@ defineItem = (
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
     );
     let findSlot = item.find((item) => item._id === slot);
-    let findItem = findSlot["items"].find((item) => item._id === tag);
+    let findItem = findSlot["items"].find((item) => item._id === noenchanted[0]);
     $(`article[name=${slot}] > h5`).text(
       substituirNomes(findItem["LocalizedNames"]["PT-BR"])
     );
@@ -461,7 +462,7 @@ defineItem = (
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
     );
     let findSlot = item.find((item) => item._id === slot);
-    let findItem = findSlot["items"].find((item) => item._id === tag);
+    let findItem = findSlot["items"].find((item) => item._id === noenchanted[0]);
     $(`article[name=${slot}] > h5`).text(
       substituirNomes(findItem["LocalizedNames"]["PT-BR"])
     );
@@ -474,7 +475,7 @@ defineItem = (
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
     );
     let findSlot = item.find((item) => item._id === slot);
-    let findItem = findSlot["items"].find((item) => item._id === tag);
+    let findItem = findSlot["items"].find((item) => item._id === noenchanted[0]);
     $(`article[name=${slot}] > h5`).text(
       substituirNomes(findItem["LocalizedNames"]["PT-BR"])
     );
@@ -487,7 +488,7 @@ defineItem = (
       `background-image: url("https://render.albiononline.com/v1/item/${tag}");`
     );
     let findSlot = item.find((item) => item._id === slot);
-    let findItem = findSlot["items"].find((item) => item._id === tag);
+    let findItem = findSlot["items"].find((item) => item._id === noenchanted[0]);
     $(`article[name=${slot}] > h5`).text(
       substituirNomes(findItem["LocalizedNames"]["PT-BR"])
     );
@@ -501,14 +502,18 @@ $("button.save").click(function (e) {
   let slotItem = $("#selectItem").attr("slot");
   let slotNum = $("#selectItem").attr("num");
   let itemSelect = $("#selectItem > main > article > picture[select=true]");
+  let enchanted = $("main > section > div.enchanted").attr('enchanted')
   let itemName = itemSelect.attr("name");
   let itemTwoHand = itemSelect.attr("twohand");
   if (slotItem == "all") {
     defineSwap(slotNum, itemName);
   } else {
-    defineItem(slotItem, itemName, itemTwoHand);
+    defineItem(slotItem, `${itemName}@${enchanted}`, itemTwoHand);
   }
   $("#selectItem,.darkScreen").fadeOut();
+});
+$("div.enchanted > button").click(function (e) {
+  $('div.enchanted').attr('enchanted',$(this).val())
 });
 createItens = (slot = "mainhand", num = "") => {
   if (slot !== $("#selectItem").attr("slot")) {
@@ -658,9 +663,7 @@ function getUrlParameters(url) {
 
 getUrlBuild = () => {
   var getParams = getUrlParameters(window.location.href);
-  try {
-    
-  
+  try { 
   $.map(getParams, function (elementOrValue, indexOrKey) {
     var a = elementOrValue.split("|");
     if (indexOrKey == "title") {
@@ -720,11 +723,18 @@ gerarLink = () => {
   $.map($("aside[name=other] > article"), function (e, i) {
     var temp = [];
     if ($(e).find("button.itemSelected").attr("tag") != undefined) {
-      temp.push($(e).attr("name"));
-      temp.push($(e).find("button.itemSelected").attr("tag"));
-      param.push(temp.join("="));
+      name = $(e).attr("name")
+      tag = $(e).find("button.itemSelected").attr("tag")
+      temp.push(name);
+      temp.push(tag);
+      if(name == "offhand" && tag != ''){
+        param.push(temp.join("="));
+      }
+
     }
   });
+
+  
   var temp = [];
   if ($("section#swap > .itemSelectSwap > button").length > 0) {
     $.map($("section#swap > .itemSelectSwap > button"), function (e, i) {
@@ -739,3 +749,12 @@ gerarLink = () => {
 };
 
 // getUrlBuild()
+$(document).ready(function() {
+  $('#copyButton').click(function() {
+    // Seleciona o input e copia seu valor para a área de transferência
+    var inputText = $('#linkShare')[0];
+    inputText.select();
+    inputText.setSelectionRange(0, 99999)
+    document.execCommand('copy');
+  });
+});

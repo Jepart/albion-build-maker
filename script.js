@@ -506,7 +506,7 @@ $("button.save").click(function (e) {
   let itemName = itemSelect.attr("name");
   let itemTwoHand = itemSelect.attr("twohand");
   if (slotItem == "all") {
-    defineSwap(slotNum, itemName);
+    defineSwap(slotNum, `${itemName}@${enchanted}`);
   } else {
     defineItem(slotItem, `${itemName}@${enchanted}`, itemTwoHand);
   }

@@ -727,7 +727,7 @@ gerarLink = () => {
       tag = $(e).find("button.itemSelected").attr("tag")
       temp.push(name);
       temp.push(tag);
-      if(name == "offhand" && tag != ''){
+      if(name != "offhand" && tag != ''){
         param.push(temp.join("="));
       }
 

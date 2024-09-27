@@ -758,3 +758,14 @@ $(document).ready(function() {
     document.execCommand('copy');
   });
 });
+$('picture.icon > img').click(function (e) { 
+  img = $(this).attr('img')
+  if(img == "project"){
+    next = 'amendobobo'
+  }else{
+    next = 'project'
+  }
+  $(this).attr('img',next)
+  $(this).attr('src',`assets/${next}.png`)
+
+});

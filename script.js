@@ -761,9 +761,9 @@ $(document).ready(function() {
 $('picture.icon > img').click(function (e) { 
   img = $(this).attr('img')
   if(img == "project"){
-    next = 'amendobobo'
+    next = 'trem'
   }else{
-    next = 'project'
+    next = 'trem'
   }
   $(this).attr('img',next)
   $(this).attr('src',`assets/${next}.png`)

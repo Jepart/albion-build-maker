@@ -758,14 +758,14 @@ $(document).ready(function() {
     document.execCommand('copy');
   });
 });
-$('picture.icon > img').click(function (e) { 
-  img = $(this).attr('img')
-  if(img == "project"){
-    next = 'trem'
-  }else{
-    next = 'trem'
-  }
-  $(this).attr('img',next)
-  $(this).attr('src',`assets/${next}.png`)
+// $('picture.icon > img').click(function (e) { 
+//   img = $(this).attr('img')
+//   if(img == "project"){
+//     next = 'trem'
+//   }else{
+//     next = 'trem'
+//   }
+//   $(this).attr('img',next)
+//   $(this).attr('src',`assets/${next}.PNG`)
 
-});
+// });

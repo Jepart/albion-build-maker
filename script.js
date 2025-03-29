@@ -735,7 +735,7 @@ gerarLink = () => {
 
     }
   });
-
+  console.log(param);
   
   var temp = [];
   if ($("section#swap > .itemSelectSwap > button").length > 0) {
